@@ -41,24 +41,42 @@
     .toolbar {
       position: sticky;
       top: 0;
-      background: var(--bg-color);
-      padding: 15px 0;
+      background: #1a3a6b;
+      padding: 15px 20px;
       display: flex;
       gap: 15px;
       align-items: center;
       border-bottom: 2px solid var(--border);
       z-index: 1000;
+      margin: -20px -20px 20px -20px;
+      border-radius: 0;
+    }
+
+    .brand-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-name {
+      font-weight: bold;
+      font-size: 18px;
+      color: #ffffff;
     }
 
     #searchBar {
       flex-grow: 1;
       padding: 12px 20px;
       border-radius: 25px;
-      border: 1px solid var(--border);
-      background: var(--card-bg);
-      color: var(--text-color);
+      border: 1px solid rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.15);
+      color: #ffffff;
       font-size: 16px;
       outline: none;
+    }
+
+    #searchBar::placeholder {
+      color: rgba(255,255,255,0.7);
     }
 
     .moon-btn {
@@ -135,133 +153,201 @@
       font-weight: bold;
       margin-top: 20px;
     }
-/* Add this inside your <style> tags */
-.highlight {
-  background-color: #ffff00; /* Bright yellow like a real highlighter */
-  color: #000000;           /* Always black text for readability */
-  padding: 0px 4px;
-  border-radius: 3px;
-  font-weight: bold;
-}
 
-/* Adjusted color for Dark Mode so it's not too bright */
-[data-theme="dark"] .highlight {
-  background-color: #ffcc00; 
-}
+    .highlight {
+      background-color: #ffff00;
+      color: #000000;
+      padding: 0px 4px;
+      border-radius: 3px;
+      font-weight: bold;
+    }
+
+    [data-theme="dark"] .highlight {
+      background-color: #ffcc00;
+    }
+
+    ul { padding-left: 20px; margin: 10px 0; }
+    ul li { margin-bottom: 6px; }
+    p { margin: 10px 0; }
+
+    mark.search-highlight {
+      background-color: #ff6b00;
+      color: #ffffff;
+      padding: 0 3px;
+      border-radius: 3px;
+      font-weight: bold;
+    }
+
+    [data-theme="dark"] mark.search-highlight {
+      background-color: #ff8c00;
+      color: #000000;
+    }
   </style>
 </head>
 <body>
 
 <div class="toolbar">
   <div class="brand-container">
-    <img src="logo.png" alt="Logo" width="60" height="50" style="object-fit: contain;">
+    <img src="logo.png" alt="ReSupply Logo" width="60" height="50" style="object-fit: contain;">
     <span class="brand-name">ReSupply</span>
   </div>
   <input type="text" id="searchBar" placeholder="Search keywords...">
   <button class="moon-btn" id="themeToggle">🌙</button>
 </div>
+
 <div id="scriptRoot">
-  
+
+  <!-- STEP 1 -->
   <div class="step-item searchable">
     <div class="step-header">1. Greeting & Initial Contact</div>
     <div class="step-content">
       <div class="quote">"Thank you for calling, and for your willingness to donate, may I please have your first name?"</div>
-      <div class="quote">"{Name}, I’d be happy to help you get your donation pick up scheduled here over the phone <span class="highlight">but first how are you doing today.</span>"</div>
+      <div class="quote">"<strong>{Insert Name}</strong>, I'd be happy to help you get your donation pick up scheduled here over the phone, <span class="highlight">but first how are you doing today.</span>"</div>
 
       <div class="instruction">AB Test</div>
-      <div class="quote"><span class="highlight">Now {Name} is this the first time that you’ve scheduled a home donation pickup to be delivered to {Charity Name}?</span>"</div>
+      <div class="quote"><span class="highlight">"Now {insert first name} is this the first time that you've scheduled a home donation pickup to be delivered to the {insert charity name}"</span></div>
+      <p><em>(Mention charity name if sourced)</em></p>
+
+      <div class="quote">"<strong>{Insert Charity name}</strong> relies on donations like yours to power their mission, so thank you so much for your generosity. To check the truck availability, can I please have the address where you need your donations picked up from?"</div>
+
+      <div class="quote"><span class="highlight">"Perfect! We have very good news, we do have coverage."</span></div>
+
+      <div class="instruction">If Donor Has Existing Pickup or OB Request</div>
+      <p>Follow up accordingly.</p>
+
+      <div class="instruction">If Out of Zone or No Charity</div>
+      <div class="quote">"We need to get confirmation from the nearest haulers and make sure we can reach out to your location."</div>
+      <div class="quote">"It looks like you're just outside our service area, but we may still be able to arrange a pickup through one of our partners. Would you like me to check for you?"</div>
+
+      <div class="instruction">If No Charity and No Hauler Available</div>
+      <div class="quote">"We greatly appreciate your willingness to donate to a local charity, however, it looks like we don't offer our pickup services in your area at this time."</div>
     </div>
   </div>
 
+  <!-- STEP 2 -->
   <div class="step-item searchable">
-    <div class="step-header">2. Address & Coverage Check</div>
+    <div class="step-header">2. Confirm List of Items</div>
     <div class="step-content">
-      <div class="quote">"{Charity Name} relies on donations like yours to power their mission, so thank you so much for your generosity. To check the truck availability, can I please have the address where you need your donations picked up from?"</div>
-      <div class="quote"> <span class="highlight"> Perfect! We have very good news, we do have coverage.</span>"</div>
-      <div class="instruction">If Out of Zone</div>
-      <p>"It looks like you're just outside our service area, but we may still be able to arrange a pickup through one of our partners. Would you like me to check for you?"</p>
+      <div class="instruction">Important</div>
+      <p><strong><u>MAKE SURE YOU ESTABLISH IF ITEMS ARE A ONE PERSON OR TWO PEOPLE LIFT OR IF WE NEED SPECIAL TOOLS TO PICK THEM UP</u></strong></p>
+
+      <p><strong>Specialty Items:</strong> Set expectations. Inform the donor that specialty items require specific handling and provide the estimated cost (<strong>$550 + base price and additional fees</strong>). If they agree to the pricing and still want to add the item, proceed to the next step.</p>
+
+      <div class="quote">"Just to confirm, I have these details: [List donor's items]. Is that correct?"</div>
     </div>
   </div>
 
+  <!-- STEP 3 -->
   <div class="step-item searchable">
-    <div class="step-header">3. Confirm List of Items</div>
-    <div class="step-content">
-      <div class="instruction">Important: Establish 1-person vs 2-person lift or special tools needed.</div>
-      <div class="quote">"Just to confirm, I have these details: [List items]. Is that correct?"</div>
-      <p><strong>Specialty Items:</strong> Inform donor of specific handling and estimated cost ($550+ base price and additional fees). If they agree to the pricing
-and still want to add the item, proceed to the next step.
-Just to confirm, I have these details: [List donor’s items]. Is that correct?"</p>
-    </div>
-  </div>
-
-  <div class="step-item searchable">
-    <div class="step-header">4. Item Condition & Logistics</div>
+    <div class="step-header">3. Confirm Item's Shape & Pickup Details</div>
     <div class="step-content">
       <div class="instruction">Confirm the following:</div>
       <ul>
-        <li>Disassembly requirements</li>
-        <li>Staircases or elevator access</li>
-        <li>Damage (rips, tears, stains, or smoke smell)</li>
+        <li><strong>Disassembly</strong> requirements</li>
+        <li><strong>Staircases</strong> or elevator access</li>
+        <li><strong>Damage</strong> on items (rips, tears, stains, or smoke smell)</li>
       </ul>
     </div>
   </div>
 
+  <!-- STEP 4 -->
   <div class="step-item searchable">
-    <div class="step-header">5. Availability & ReSupply Partnership</div>
+    <div class="step-header">4. Confirm Availability & ReSupply Partnership</div>
     <div class="step-content">
-      <div class="quote">"We do have multiple home pickup times available, are mornings or afternoons better for you?"</div>
-      <div class="quote">"Now before we proceed, a few important notes: Due to rising trucking costs, {Charity Name} can no longer fully cover the expense of home pickups. They've officially partnered with our veteran-run team at ReSupply to handle collections."</div>
-      <div class="quote">"By sponsoring this white-glove pickup, you're making the donation free for the charity and impacting your community."</div>
+      <div class="quote"><span class="highlight">"We do have multiple home pickup times available, are mornings or afternoons better for you?"</span></div>
+      <div class="quote"><span class="highlight">"Okay so we have availability on (list 2-3 slots e.g. Tuesday afternoon, Wednesday, or Friday)."</span></div>
+      <p>Book time slot.</p>
+
+      <div class="quote"><span class="highlight">"Now before we proceed any further to finalize your donation pickup, a few important notes: Due to rising trucking costs since the pandemic, the {insert charity name} can no longer fully cover the expense of home donation pickups. To keep pickups available, they've officially partnered with our veteran-run team at ReSupply to handle collections on their behalf."</span></div>
+
+      <div class="quote">"ReSupply uses trained, insured haulers to pick up your items and deliver them directly to the <strong>{insert charity name}</strong>. There could be a small fee for this white-glove pickup, but by sponsoring it, you're actually making the donation completely free for the <strong>{insert charity name}</strong>, and doing something really impactful for your community."</div>
     </div>
   </div>
 
+  <!-- STEP 5 -->
   <div class="step-item searchable">
-    <div class="step-header">6. Recycling Fees (If Damage Exists or Not)</div>
+    <div class="step-header">5. Recycling Fees (If Damage Exists)</div>
     <div class="step-content">
-      <div class="quote">"Damaged items will be sent to a recycling center. There may be an additional fee for handling those, confirmed on-site."</div>
-      <div class="instruction">If "No Damage" was previously stated:</div>
-      <div class="quote">"The onsite team will identify non-donatable items. If they find items not acceptable to {Charity Name}, they will offer ethical recycling for a small additional fee."</div>
+      <div class="quote">"I do want to mention that we can still pick up any items that are damaged. However, please note that <strong>[Charity Name]</strong> only accepts items in good condition, so any damaged items will be sent to a recycling center. There may be an additional fee for handling those items, which will be confirmed on-site."</div>
     </div>
   </div>
 
+  <!-- STEP 6 -->
   <div class="step-item searchable">
-    <div class="step-header">7. Estimated Cost & Payment</div>
+    <div class="step-header">6. Confirm Contact Information</div>
     <div class="step-content">
-      <div class="quote">"The estimate covers two licensed/insured movers, the vehicle, fuel, specialty tools, and delivery to {Charity Name}."</div>
-      <div class="quote">"It would only cost {Booking Fee} to reserve your pickup here over the phone, and the remaining cost estimate due on site would be ______."</div>
-      <div class="instruction">If Sponsorship Applies</div>
-      <div class="quote">"Great news! Goodwill is covering part of the cost. You'll pay a $10 booking fee today and an estimated $70 on arrival."</div>
-      <div class="instruction">Payment Link</div>
-      <div class="quote">"I’m going to stay on the phone with you to help you pay the booking fee. Did you receive the text/email link yet?"</div>
+      <div class="quote">"And just so our movers are able to contact you when they are on the way, what is the best phone number for you?"</div>
+      <div class="quote">"Excellent, thank you so much. And <strong>{Insert charity name}</strong> does require an email address in order to send you your donation tax receipt following the completed donation pickup."</div>
+
+      <div class="instruction">Remember</div>
+      <p><strong><u>Spell out the name and email address using the phonetic alphabet.</u></strong></p>
     </div>
   </div>
 
+  <!-- STEP 7 -->
   <div class="step-item searchable">
-    <div class="step-header">8. RECAP (Mandatory)</div>
+    <div class="step-header">7. Recycling Fees (When "No Damages" Was Previously Stated)</div>
     <div class="step-content">
-      <div class="instruction">Must include: Date/Time, Fees, 30-min notification, Management link.</div>
-      <div class="quote">"Your donation pickup is officially reserved for Insert Date time! If you have just one more
-minute, I’d love to go over a few more helpful details to make sure you have the best
-possible experience. Can you stay on the phone for 1 more minute?"</div>
-<div class="quote">"Pause"</div>
-<div class="quote">"You will receive an email shortly, that has helpful information, and a link to edit your
-donation pickup reservation if needed. That said, if you have a pen and a piece of
-paper, I’d like to give you the phone number for our white glove customer service.
-All of our customer service representatives are overseen by Military Veterans, and
-if you are not happy with anything you can always ask for a manager. The Phone
-number is XXX-XXX-XXXX, again thats XXXX-XXXX-XXXX please note this is a
-text only phone number."</div>
+      <div class="quote">"Before we proceed, I would like to share with you that the onsite team will identify any non-donatable items during the pickup. If they find any items that are not acceptable donations to <strong>{insert charity name}</strong>, they will offer you the option of taking the items to an ethical recycling facility for a small additional fee, which will be shared with you at that time. You can decide whether you want to keep those items or have our hauler remove them for you."</div>
     </div>
   </div>
 
+  <!-- STEP 8 -->
   <div class="step-item searchable">
-    <div class="step-header">9. Thank You Statement</div>
+    <div class="step-header">8. Estimated Cost & Payment</div>
     <div class="step-content">
-      <div class="quote">"Your time window is set in the PM between 12PM-5PM, you will be notified when
-the driver is on the way.
-Is there anything else that I can help you with at this time?"</div>
-      <div class="quote">"I want to thank you one final time, for your generosity, and willingness to support
-{Insert charity name}, have a wonderful rest of your day"</div>
+      <div class="quote">"So we're almost finished, the estimate I'm going to give you covers <strong>two licensed, trained and fully insured movers</strong>, the hauling vehicle, fuel, any specialty tools and equipment needed to traverse staircases, and safely remove all of your donations from your home, as well as the donation delivery directly to <strong>{insert charity name}</strong>."</div>
+
+      <div class="quote">"It would only cost <strong>{Insert booking fee}</strong> to reserve your pickup here over the phone, and the remaining cost estimate due on site would be ______________."</div>
+
+      <p><em>Pause and hold breath / objection handle.</em></p>
+      <p><strong>Explain by items, staircases, disassembly — other options are more expensive.</strong></p>
+
+      <div class="instruction">If a Sponsorship Applies</div>
+      <div class="quote">"Great news! Goodwill is covering part of the pickup cost today. The total estimated cost for the pickup is <strong>$80</strong> (total sponsored cost). To secure your pickup, you'll pay a <strong>$10</strong> booking fee today. When our pickup partner arrives, you'll pay an estimated <strong>$70</strong> [amount based on your current donatable items]. Please note: if you add or remove items before the pickup, the charity's contribution may adjust accordingly."</div>
+    </div>
+  </div>
+
+  <!-- STEP 9 -->
+  <div class="step-item searchable">
+    <div class="step-header">9. Payment Process</div>
+    <div class="step-content">
+      <div class="quote"><span class="highlight">"We use a secure payment process, and I'm going to stay on the phone with you to help you pay the {insert booking fee} and to complete the reservation. You should have just received a text message and an email with a link to enter your card details. Did you receive this link yet?"</span></div>
+      <p><em>Walk them through this.</em></p>
+    </div>
+  </div>
+
+  <!-- STEP 10 -->
+  <div class="step-item searchable">
+    <div class="step-header">10. RECAP (Mandatory)</div>
+    <div class="step-content">
+      <div class="instruction">Must Include:</div>
+      <ul>
+        <li><strong>Date and Time</strong></li>
+        <li><strong>Booking fee and remaining balance</strong></li>
+        <li><strong>Notification text and email 30 min prior</strong></li>
+        <li><strong>Mention management link</strong></li>
+        <li><strong>Mention support # is included in email</strong> (give donor the number in case they ask for it)</li>
+        <li><strong>Military veterans overseeing the pickup</strong></li>
+      </ul>
+
+      <div class="quote">"Just to recap: Your donation pickup is officially reserved for <strong>Insert Date &amp; Time</strong>! If you have just one more minute, I'd love to go over a few more helpful details to make sure you have the best possible experience. <span class="highlight">Can you stay on the phone for 1 more minute?"</span></div>
+
+      <div class="quote"><em>Pause.</em></div>
+
+      <div class="quote">"You will receive an email shortly, that has helpful information, and a link to edit your donation pickup reservation if needed. That said, if you have a pen and a piece of paper, I'd like to give you the phone number for our white glove customer service. All of our customer service representatives are overseen by <strong>Military Veterans</strong>, and if you are not happy with anything you can always ask for a manager. The phone number is <strong>XXX-XXX-XXXX</strong>, again that's <strong>XXX-XXX-XXXX</strong> — please note this is a <strong>text only phone number</strong>."</div>
+    </div>
+  </div>
+
+  <!-- STEP 11 -->
+  <div class="step-item searchable">
+    <div class="step-header">11. Thank You Statement</div>
+    <div class="step-content">
+      <div class="quote">"Your time window is set in the PM between <strong>12PM–5PM</strong>, you will be notified when the driver is on the way. Is there anything else that I can help you with at this time?"</div>
+
+      <div class="quote"><em>Pause.</em></div>
+
+      <div class="quote">"I want to thank you one final time, for your generosity, and willingness to support <strong>{Insert charity name}</strong>, have a wonderful rest of your day."</div>
     </div>
   </div>
 
@@ -287,31 +373,72 @@ Is there anything else that I can help you with at this time?"</div>
     themeToggle.textContent = isDark ? '🌙' : '☀️';
   });
 
-  // Search Logic
+  // Search Logic with keyword highlighting
   const searchBar = document.getElementById('searchBar');
+
+  // Save original HTML of each step content on load
+  document.querySelectorAll('.searchable').forEach(item => {
+    const content = item.querySelector('.step-content');
+    if (content) content.dataset.originalHtml = content.innerHTML;
+  });
+
   searchBar.addEventListener('input', (e) => {
-    const term = e.target.value.toLowerCase();
+    const term = e.target.value.trim();
     const items = document.querySelectorAll('.searchable');
-    
-    if (term.length === 0) {
-      items.forEach(i => i.classList.remove('hidden', 'active'));
-      return;
-    }
+
+    // Restore original HTML first
+    items.forEach(item => {
+      const content = item.querySelector('.step-content');
+      if (content && content.dataset.originalHtml) {
+        content.innerHTML = content.dataset.originalHtml;
+      }
+      item.classList.remove('hidden', 'active');
+    });
+
+    if (term.length === 0) return;
+
+    const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(`(${escaped})`, 'gi');
 
     items.forEach(item => {
-      if (item.innerText.toLowerCase().includes(term)) {
+      const content = item.querySelector('.step-content');
+      if (!content) return;
+
+      const textToSearch = content.dataset.originalHtml.replace(/<[^>]*>/g, ' ').toLowerCase();
+
+      if (textToSearch.includes(term.toLowerCase())) {
         item.classList.remove('hidden');
         item.classList.add('active');
+        highlightTextNodes(content, regex);
       } else {
         item.classList.add('hidden');
       }
     });
   });
 
+  function highlightTextNodes(node, regex) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      const text = node.textContent;
+      const freshRegex = new RegExp(regex.source, 'gi');
+      if (freshRegex.test(text)) {
+        const span = document.createElement('span');
+        span.innerHTML = text.replace(new RegExp(regex.source, 'gi'), '<mark class="search-highlight">$1</mark>');
+        node.parentNode.replaceChild(span, node);
+      }
+    } else if (node.nodeType === Node.ELEMENT_NODE && !['SCRIPT','STYLE'].includes(node.tagName)) {
+      Array.from(node.childNodes).forEach(child => highlightTextNodes(child, regex));
+    }
+  }
+
   // Reset Logic
   function resetFlow() {
     searchBar.value = "";
-    document.querySelectorAll('.step-item').forEach(item => {
+    // Restore original HTML
+    document.querySelectorAll('.searchable').forEach(item => {
+      const content = item.querySelector('.step-content');
+      if (content && content.dataset.originalHtml) {
+        content.innerHTML = content.dataset.originalHtml;
+      }
       item.classList.remove('active', 'completed', 'hidden');
     });
     window.scrollTo({top: 0, behavior: 'smooth'});
@@ -319,5 +446,4 @@ Is there anything else that I can help you with at this time?"</div>
 </script>
 
 </body>
-
 </html>
