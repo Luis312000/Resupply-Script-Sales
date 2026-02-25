@@ -31,9 +31,9 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: var(--bg-color);
       color: var(--text-color);
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 20px;
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
       line-height: 1.6;
       transition: background 0.3s, color 0.3s;
     }
@@ -42,14 +42,16 @@
       position: sticky;
       top: 0;
       background: #1a3a6b;
-      padding: 15px 20px;
+      padding: 15px 40px;
       display: flex;
       gap: 15px;
       align-items: center;
       border-bottom: 2px solid var(--border);
       z-index: 1000;
-      margin: -20px -20px 20px -20px;
-      border-radius: 0;
+    }
+
+    .page-wrapper {
+      padding: 30px 40px;
     }
 
     .brand-container {
@@ -182,6 +184,145 @@
       background-color: #ff8c00;
       color: #000000;
     }
+
+    /* Layout wrapper */
+    .page-layout {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    /* Sidebar nav */
+    .sidebar {
+      width: 200px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 90px;
+    }
+
+    .sidebar-title {
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent-color);
+      margin-bottom: 10px;
+    }
+
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      color: var(--text-color);
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+      margin-bottom: 3px;
+      text-decoration: none;
+    }
+
+    .sidebar-link:hover {
+      background: var(--card-bg);
+      border-color: var(--border);
+    }
+
+    .sidebar-link.active-nav {
+      background: var(--card-bg);
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+      font-weight: bold;
+    }
+
+    .sidebar-link.done-nav {
+      color: #27ae60;
+    }
+
+    .sidebar-link.done-nav .nav-dot {
+      background: #27ae60;
+    }
+
+    .nav-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
+
+    .sidebar-link.active-nav .nav-dot {
+      background: var(--accent-color);
+    }
+
+    /* Main content */
+    .main-content { flex: 1; min-width: 0; }
+
+    /* Progress bar */
+    .progress-container {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .progress-label {
+      font-size: 13px;
+      font-weight: bold;
+      color: var(--text-color);
+    }
+
+    .progress-count {
+      font-size: 13px;
+      color: var(--accent-color);
+      font-weight: bold;
+    }
+
+    .progress-track {
+      height: 8px;
+      background: var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #27ae60, #2ecc71);
+      border-radius: 4px;
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    .progress-steps {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+    }
+
+    .progress-step-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--border);
+      transition: background 0.3s;
+    }
+
+    .progress-step-dot.done { background: #27ae60; }
+    .progress-step-dot.current { background: var(--accent-color); }
+
+    @media (max-width: 700px) {
+      .sidebar { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -195,7 +336,41 @@
   <button class="moon-btn" id="themeToggle">🌙</button>
 </div>
 
+<div class="page-wrapper">
 <div id="scriptRoot">
+
+<div class="page-layout">
+
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <div class="sidebar-title">📋 Steps</div>
+    <a class="sidebar-link" data-step="0" onclick="jumpTo(0)"><span class="nav-dot"></span>1. Greeting</a>
+    <a class="sidebar-link" data-step="1" onclick="jumpTo(1)"><span class="nav-dot"></span>2. Confirm Items</a>
+    <a class="sidebar-link" data-step="2" onclick="jumpTo(2)"><span class="nav-dot"></span>3. Item Shape</a>
+    <a class="sidebar-link" data-step="3" onclick="jumpTo(3)"><span class="nav-dot"></span>4. Availability</a>
+    <a class="sidebar-link" data-step="4" onclick="jumpTo(4)"><span class="nav-dot"></span>5. Recycling (Damage)</a>
+    <a class="sidebar-link" data-step="5" onclick="jumpTo(5)"><span class="nav-dot"></span>6. Contact Info</a>
+    <a class="sidebar-link" data-step="6" onclick="jumpTo(6)"><span class="nav-dot"></span>7. Recycling (No Dmg)</a>
+    <a class="sidebar-link" data-step="7" onclick="jumpTo(7)"><span class="nav-dot"></span>8. Est. Cost</a>
+    <a class="sidebar-link" data-step="8" onclick="jumpTo(8)"><span class="nav-dot"></span>9. Payment</a>
+    <a class="sidebar-link" data-step="9" onclick="jumpTo(9)"><span class="nav-dot"></span>10. Recap</a>
+    <a class="sidebar-link" data-step="10" onclick="jumpTo(10)"><span class="nav-dot"></span>11. Thank You</a>
+  </nav>
+
+  <!-- Main -->
+  <div class="main-content">
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+      <div class="progress-header">
+        <span class="progress-label">📞 Call Progress</span>
+        <span class="progress-count" id="progressCount">0 / 11 steps</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-steps" id="progressDots"></div>
+    </div>
 
   <!-- STEP 1 -->
   <div class="step-item searchable">
@@ -351,19 +526,82 @@
     </div>
   </div>
 
-</div>
+  </div><!-- end main-content -->
+</div><!-- end page-layout -->
 
-<button class="reset-btn" onclick="resetFlow()">Reset Entire Flow</button>
+</div><!-- end scriptRoot -->
+</div><!-- end page-wrapper -->
+
+<button class="reset-btn" style="margin: 0 40px 40px;" onclick="resetFlow()">Reset Entire Flow</button>
 
 <script>
+  // Init progress dots
+  const totalSteps = 11;
+  const dotsContainer = document.getElementById('progressDots');
+  for (let i = 0; i < totalSteps; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'progress-step-dot';
+    dot.id = `dot-${i}`;
+    dotsContainer.appendChild(dot);
+  }
+
   // Accordion Logic
-  document.querySelectorAll('.step-header').forEach(header => {
+  document.querySelectorAll('.step-header').forEach((header, index) => {
     header.addEventListener('click', () => {
       const item = header.parentElement;
       item.classList.toggle('active');
       item.classList.add('completed');
+      updateProgress();
+      updateSidebar();
     });
   });
+
+  function updateProgress() {
+    const steps = document.querySelectorAll('.step-item');
+    const completed = document.querySelectorAll('.step-item.completed').length;
+    const pct = Math.round((completed / totalSteps) * 100);
+
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressCount').textContent = `${completed} / ${totalSteps} steps`;
+
+    steps.forEach((step, i) => {
+      const dot = document.getElementById(`dot-${i}`);
+      if (!dot) return;
+      if (step.classList.contains('completed')) {
+        dot.className = 'progress-step-dot done';
+      } else if (step.classList.contains('active')) {
+        dot.className = 'progress-step-dot current';
+      } else {
+        dot.className = 'progress-step-dot';
+      }
+    });
+  }
+
+  function updateSidebar() {
+    const steps = document.querySelectorAll('.step-item');
+    steps.forEach((step, i) => {
+      const link = document.querySelector(`.sidebar-link[data-step="${i}"]`);
+      if (!link) return;
+      link.classList.remove('active-nav', 'done-nav');
+      const dot = link.querySelector('.nav-dot');
+      if (step.classList.contains('completed') && !step.classList.contains('active')) {
+        link.classList.add('done-nav');
+      } else if (step.classList.contains('active')) {
+        link.classList.add('active-nav');
+      }
+    });
+  }
+
+  function jumpTo(index) {
+    const steps = document.querySelectorAll('.step-item');
+    if (!steps[index]) return;
+    // Close all, open target
+    steps.forEach(s => s.classList.remove('active'));
+    steps[index].classList.add('active', 'completed');
+    steps[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
+    updateProgress();
+    updateSidebar();
+  }
 
   // Dark Mode Logic
   const themeToggle = document.getElementById('themeToggle');
@@ -433,7 +671,6 @@
   // Reset Logic
   function resetFlow() {
     searchBar.value = "";
-    // Restore original HTML
     document.querySelectorAll('.searchable').forEach(item => {
       const content = item.querySelector('.step-content');
       if (content && content.dataset.originalHtml) {
@@ -441,6 +678,8 @@
       }
       item.classList.remove('active', 'completed', 'hidden');
     });
+    updateProgress();
+    updateSidebar();
     window.scrollTo({top: 0, behavior: 'smooth'});
   }
 </script>
