@@ -323,6 +323,77 @@
     @media (max-width: 700px) {
       .sidebar { display: none; }
     }
+
+    /* Section divider */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 32px 0 16px;
+    }
+
+    .section-divider-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .section-divider-label {
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 4px 14px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .label-regular {
+      background: #e8f4fd;
+      color: #1a3a6b;
+      border: 1px solid #b8d4f0;
+    }
+
+    .label-uber {
+      background: #fff0e0;
+      color: #c45000;
+      border: 1px solid #ffc999;
+    }
+
+    [data-theme="dark"] .label-regular {
+      background: #0d2040;
+      color: #7ab3e0;
+      border-color: #1a3a6b;
+    }
+
+    [data-theme="dark"] .label-uber {
+      background: #2a1500;
+      color: #ff9a50;
+      border-color: #c45000;
+    }
+
+    /* Uber step styling */
+    .step-item.uber-step {
+      border-left: 4px solid #ff6b00;
+    }
+
+    .step-item.uber-step .step-header {
+      color: #c45000;
+    }
+
+    [data-theme="dark"] .step-item.uber-step .step-header {
+      color: #ff9a50;
+    }
+
+    .sidebar-divider {
+      font-size: 10px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #c45000;
+      margin: 12px 0 6px;
+      padding-left: 4px;
+    }
   </style>
 </head>
 <body>
@@ -344,6 +415,7 @@
   <!-- Sidebar -->
   <nav class="sidebar">
     <div class="sidebar-title">📋 Steps</div>
+    <div class="sidebar-divider" style="color:#1a3a6b;">🏠 Regular Pickup</div>
     <a class="sidebar-link" data-step="0" onclick="jumpTo(0)"><span class="nav-dot"></span>1. Greeting</a>
     <a class="sidebar-link" data-step="1" onclick="jumpTo(1)"><span class="nav-dot"></span>2. Confirm Items</a>
     <a class="sidebar-link" data-step="2" onclick="jumpTo(2)"><span class="nav-dot"></span>3. Item Shape</a>
@@ -355,6 +427,17 @@
     <a class="sidebar-link" data-step="8" onclick="jumpTo(8)"><span class="nav-dot"></span>9. Payment</a>
     <a class="sidebar-link" data-step="9" onclick="jumpTo(9)"><span class="nav-dot"></span>10. Recap</a>
     <a class="sidebar-link" data-step="10" onclick="jumpTo(10)"><span class="nav-dot"></span>11. Thank You</a>
+    <div class="sidebar-divider">🚗 Uber Pickup</div>
+    <a class="sidebar-link" data-step="11" onclick="jumpTo(11)"><span class="nav-dot" style="background:#ff6b00"></span>1. Greeting</a>
+    <a class="sidebar-link" data-step="12" onclick="jumpTo(12)"><span class="nav-dot" style="background:#ff6b00"></span>2. Coverage</a>
+    <a class="sidebar-link" data-step="13" onclick="jumpTo(13)"><span class="nav-dot" style="background:#ff6b00"></span>3. Service & Cost</a>
+    <a class="sidebar-link" data-step="14" onclick="jumpTo(14)"><span class="nav-dot" style="background:#ff6b00"></span>4. Items & Date</a>
+    <a class="sidebar-link" data-step="15" onclick="jumpTo(15)"><span class="nav-dot" style="background:#ff6b00"></span>5. Charity & Cost</a>
+    <a class="sidebar-link" data-step="16" onclick="jumpTo(16)"><span class="nav-dot" style="background:#ff6b00"></span>6. Contact Info</a>
+    <a class="sidebar-link" data-step="17" onclick="jumpTo(17)"><span class="nav-dot" style="background:#ff6b00"></span>7. Cancellation</a>
+    <a class="sidebar-link" data-step="18" onclick="jumpTo(18)"><span class="nav-dot" style="background:#ff6b00"></span>8. Payment</a>
+    <a class="sidebar-link" data-step="19" onclick="jumpTo(19)"><span class="nav-dot" style="background:#ff6b00"></span>9. Recap</a>
+    <a class="sidebar-link" data-step="20" onclick="jumpTo(20)"><span class="nav-dot" style="background:#ff6b00"></span>10. Thank You</a>
   </nav>
 
   <!-- Main -->
@@ -364,13 +447,20 @@
     <div class="progress-container">
       <div class="progress-header">
         <span class="progress-label">📞 Call Progress</span>
-        <span class="progress-count" id="progressCount">0 / 11 steps</span>
+        <span class="progress-count" id="progressCount">0 / 21 steps</span>
       </div>
       <div class="progress-track">
         <div class="progress-fill" id="progressFill"></div>
       </div>
       <div class="progress-steps" id="progressDots"></div>
     </div>
+
+  <!-- Regular Pickup Section Label -->
+  <div class="section-divider">
+    <div class="section-divider-line"></div>
+    <span class="section-divider-label label-regular">🏠 Regular Pickup Script</span>
+    <div class="section-divider-line"></div>
+  </div>
 
   <!-- STEP 1 -->
   <div class="step-item searchable">
@@ -510,7 +600,7 @@
 
       <div class="quote"><em>Pause.</em></div>
 
-      <div class="quote">"You will receive an email shortly, that has helpful information, and a link to edit your donation pickup reservation if needed. That said, if you have a pen and a piece of paper, I'd like to give you the phone number for our white glove customer service. All of our customer service representatives are overseen by <strong>Military Veterans</strong>, and if you are not happy with anything you can always ask for a manager. The phone number is <strong>857-342-4937</strong>, again that's <strong>857-342-4937</strong> — please note this is a <strong>text only phone number</strong>."</div>
+      <div class="quote">"You will receive an email shortly, that has helpful information, and a link to edit your donation pickup reservation if needed. That said, if you have a pen and a piece of paper, I'd like to give you the phone number for our white glove customer service. All of our customer service representatives are overseen by <strong>Military Veterans</strong>, and if you are not happy with anything you can always ask for a manager. The phone number is <strong>XXX-XXX-XXXX</strong>, again that's <strong>XXX-XXX-XXXX</strong> — please note this is a <strong>text only phone number</strong>."</div>
     </div>
   </div>
 
@@ -526,6 +616,137 @@
     </div>
   </div>
 
+  <!-- UBER PICKUP SECTION -->
+  <div class="section-divider">
+    <div class="section-divider-line"></div>
+    <span class="section-divider-label label-uber">🚗 Uber Pickup Script</span>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <!-- UBER STEP 1 -->
+  <div class="step-item uber-step searchable">
+    <div class="step-header">U1. Greeting & Initial Contact</div>
+    <div class="step-content">
+      <div class="quote">"Thank you for calling, this is <strong>[Agent Name]</strong> from ReSupply, <strong>[Charity Name]</strong> pickup partner, are you calling to schedule a donation pickup?"</div>
+      <div class="quote">"To confirm coverage, can I have the pickup address?"</div>
+    </div>
+  </div>
+
+  <!-- UBER STEP 2 -->
+  <div class="step-item uber-step searchable">
+    <div class="step-header">U2. Confirm Coverage</div>
+    <div class="step-content">
+      <div class="quote"><span class="highlight">"Perfect! We do have coverage in the area, let me explain to you how our service works."</span></div>
+      <div class="quote"><span class="highlight">"That's great, we do have coverage. I'll help you schedule a donation pickup. But first let me explain how our priority pickup works."</span></div>
+    </div>
+  </div>
+
+  <!-- UBER STEP 3 -->
+  <div class="step-item uber-step searchable">
+    <div class="step-header">U3. Describe Service & Cost</div>
+    <div class="step-content">
+      <div class="quote">"Our service is typically much more affordable and easy than hiring a private removal service, and you don't have to move any of the items yourself — and that comes with a possible pickup cost to cover labor and fuel. Please provide me the list of items."</div>
+      <div class="quote">"We are a veteran-owned company who coordinate logistics for <strong>(mention charity if sourced)</strong>. There might be a possible pickup cost based on your location and list of items. Let me gather all your details and give you an estimated cost, if any, based on that."</div>
+    </div>
+  </div>
+
+  <!-- UBER STEP 4 -->
+  <div class="step-item uber-step searchable">
+    <div class="step-header">U4. Confirm Items & Availability</div>
+    <div class="step-content">
+      <div class="quote">"What items are you planning to donate?"</div>
+      <div class="quote">"What are the items you need picked up?"</div>
+
+      <div class="instruction">Specialty Items</div>
+      <p>Set expectations. Inform the donor that specialty items require specific handling and provide the estimated cost (<strong>$550 + base price and additional fees</strong>). If they agree, proceed to next step.</p>
+
+      <div class="quote">"How soon would you need the pickup? <span class="highlight">We can even pick them up today if you want.</span>"</div>
+      <div class="quote"><span class="highlight">"Great news, you are eligible for our new <strong>Uber Pickup Service</strong>, which is more affordable and time flexible. Please note that this service supports up to <strong>5 bags/boxes of no more than 20 pounds each</strong>. Do you have a specific date and time for the pickup?"</span></div>
+    </div>
+  </div>
+
+  <!-- UBER STEP 5 -->
+  <div class="step-item uber-step searchable">
+    <div class="step-header">U5. Charity Assignment & Estimated Cost</div>
+    <div class="step-content">
+      <div class="instruction">Charity Assignment – Manual Leads</div>
+      <div class="quote">"Great! I see here that the assigned charity where the items will be taken to will be <strong>(Mention charity name)</strong>."</div>
+
+      <div class="instruction">If Sponsorship Applies</div>
+      <div class="quote">"Great news! Goodwill is covering part of the pickup cost today. The total estimated cost for the pickup is <strong>$80</strong>. To secure your pickup, you'll pay a <strong>$10</strong> booking fee today. When our pickup partner arrives, you'll pay an estimated <strong>$70</strong>. Please note: if you add or remove items before the pickup, the charity's contribution may adjust accordingly."</div>
+
+      <div class="instruction">Paid Uber Pickup</div>
+      <div class="quote">"The cost of your donation pickup is <strong>($____)</strong>, payable today."</div>
+      <p><em>Note: recycling fees do not apply to Uber pickups.</em></p>
+
+      <div class="instruction">Free / Sponsored Uber Pickup</div>
+      <div class="quote"><span class="highlight">"We have great news — you are eligible for a <strong>sponsored Uber Pickup</strong>, which means that the charity will cover the cost of transportation of your donation."</span></div>
+      <p><em>Highlight the service benefits and use rebuttals if applicable.</em></p>
+    </div>
+  </div>
+
+  <!-- UBER STEP 6 -->
+  <div class="step-item uber-step searchable">
+    <div class="step-header">U6. Contact Information & Special Instructions</div>
+    <div class="step-content">
+      <div class="instruction">Collect the following:</div>
+      <ul>
+        <li><strong>Full name</strong> (spell out using phonetic alphabet)</li>
+        <li><strong>Address</strong></li>
+        <li><strong>Phone number</strong></li>
+        <li><strong>Email address</strong></li>
+        <li><strong>Special or additional instructions</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- UBER STEP 7 -->
+  <div class="step-item uber-step searchable">
+    <div class="step-header">U7. Cancellation Disclaimer</div>
+    <div class="step-content">
+      <div class="quote">"Note that if for some reason you decide to cancel, a <strong>full refund</strong> will be given if you cancel before the date of the pickup and should be reflected in your account within <strong>3–5 business days</strong>. Now, if you cancel on the day of the pickup and the driver is already on route, a <strong>$5 cancellation fee</strong> will be charged. There is <strong>no refund</strong> if the items are already picked up."</div>
+    </div>
+  </div>
+
+  <!-- UBER STEP 8 -->
+  <div class="step-item uber-step searchable">
+    <div class="step-header">U8. Payment Process</div>
+    <div class="step-content">
+      <div class="quote"><span class="highlight">"You can also pre-tip your driver if you'd like — we offer pre-tip options of <strong>$5, $10, or $15</strong>. We can take payment securely over the phone, or I can send you a payment link. Which option do you prefer?"</span></div>
+
+      <div class="instruction">Over the Phone</div>
+      <div class="quote">"Whenever you're ready, I will stop the recording now."</div>
+
+      <div class="instruction">Payment Link</div>
+      <div class="quote">"I'll send the secure payment link to your phone and email now."</div>
+    </div>
+  </div>
+
+  <!-- UBER STEP 9 -->
+  <div class="step-item uber-step searchable">
+    <div class="step-header">U9. RECAP (Mandatory)</div>
+    <div class="step-content">
+      <div class="instruction">Must Include:</div>
+      <ul>
+        <li><strong>Date and Time</strong></li>
+        <li><strong>Booking fee and remaining balance</strong></li>
+        <li><strong>Notification text and email 30 min prior</strong></li>
+        <li><strong>Mention management link</strong></li>
+        <li><strong>Mention support # is included in email</strong></li>
+      </ul>
+      <div class="quote">"You'll receive a confirmation email shortly that contains your donation link. Your donation link is where you can find valuable information about your pickup, reach out to our support team, make adjustments to your pickup, as well as request an ETA update on the day of your pickup. <span class="highlight">Feel free to reach out by calling or simply using the website to make any changes.</span>"</div>
+    </div>
+  </div>
+
+  <!-- UBER STEP 10 -->
+  <div class="step-item uber-step searchable">
+    <div class="step-header">U10. Thank You Statement</div>
+    <div class="step-content">
+      <div class="quote">"Perfect. Your pickup is scheduled for <strong>[date]</strong> at <strong>[address]</strong>."</div>
+      <div class="quote">"You'll receive confirmation shortly. Thank you for considering donating your items to help those in need. Have a great day!"</div>
+    </div>
+  </div>
+
   </div><!-- end main-content -->
 </div><!-- end page-layout -->
 
@@ -536,7 +757,7 @@
 
 <script>
   // Init progress dots
-  const totalSteps = 11;
+  const totalSteps = 21;
   const dotsContainer = document.getElementById('progressDots');
   for (let i = 0; i < totalSteps; i++) {
     const dot = document.createElement('div');
@@ -686,5 +907,3 @@
 
 </body>
 </html>
-
-
