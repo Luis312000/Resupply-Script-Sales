@@ -453,7 +453,10 @@
     </div>
   </div>
 
-  </div><!-- end section-regular -->
+  <div style="text-align:center; padding: 20px 40px 40px;">
+    <button class="reset-btn" onclick="resetFlow()">🔄 Reset Entire Flow</button>
+  </div>
+</div><!-- end section-regular -->
 
   <div id="section-uber" style="display:none;">
   <div class="section-divider">
@@ -569,12 +572,10 @@
     </div>
   </div>
 
+  <div style="text-align:center; padding: 20px 40px 40px;">
+    <button class="reset-btn" onclick="resetFlow()">🔄 Reset Entire Flow</button>
   </div>
-</div>
-</div>
-</div>
-
-  </div><!-- end section-uber -->
+</div><!-- end section-uber -->
 
 <!-- REFERENCE SECTION -->
 <div style="padding: 0 40px 20px;">
@@ -702,8 +703,6 @@
   </div>
 </div>
 
-<button class="reset-btn" style="margin: 0 40px 40px;" onclick="resetFlow()">Reset Entire Flow</button>
-
 <script>
   let currentScript = 'regular';
   const SCRIPT_STEPS = { regular: 11, uber: 10 };
@@ -746,7 +745,7 @@
   }
 
   const dotsContainer = document.getElementById('progressDots');
-  rebuildDots();
+  selectScript('regular');
   updateProgress();
 
   document.querySelectorAll('.step-header').forEach((header) => {
