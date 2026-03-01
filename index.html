@@ -140,7 +140,17 @@
     .nav-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); flex-shrink: 0; transition: background 0.2s; }
     .sidebar-link.active-nav .nav-dot { background: var(--accent-color); }
     .main-content { flex: 1; min-width: 0; }
-    .progress-container { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; margin-bottom: 20px; }
+    .progress-container {
+      position: sticky;
+      top: 72px;
+      z-index: 900;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    }
     .progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
     .progress-label { font-size: 13px; font-weight: bold; color: var(--text-color); }
     .progress-count { font-size: 13px; color: var(--accent-color); font-weight: bold; }
@@ -218,7 +228,36 @@
     }
     .bed-size-card span { color: #1a3a6b; font-size: 15px; font-weight: bold; }
     [data-theme="dark"] .bed-size-card span { color: #7ab3e0; }
-  </style>
+    /* Script Selector */
+    .script-selector-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 20px;
+      margin-bottom: 16px;
+    }
+    .script-selector-label { font-size: 13px; font-weight: bold; color: var(--text-color); white-space: nowrap; }
+    .script-btn {
+      padding: 9px 20px;
+      border-radius: 8px;
+      border: 2px solid var(--border);
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .script-btn:hover { border-color: #1a3a6b; }
+    .script-btn.active-script-regular { background: #1a3a6b; color: white; border-color: #1a3a6b; }
+    .script-btn.active-script-uber { background: #c45000; color: white; border-color: #c45000; }
+    [data-theme="dark"] .script-btn.active-script-regular { background: #2a5298; border-color: #2a5298; }
+    [data-theme="dark"] .script-btn.active-script-uber { background: #e05500; border-color: #e05500; }
+    .script-description { font-size: 12px; color: var(--text-color); opacity: 0.7; margin-left: auto; }
+      </style>
 </head>
 <body>
 
@@ -249,20 +288,28 @@
     <a class="sidebar-link" data-step="8" onclick="jumpTo(8)"><span class="nav-dot"></span>9. Payment</a>
     <a class="sidebar-link" data-step="9" onclick="jumpTo(9)"><span class="nav-dot"></span>10. Recap</a>
     <a class="sidebar-link" data-step="10" onclick="jumpTo(10)"><span class="nav-dot"></span>11. Thank You</a>
-    <div class="sidebar-divider">🚗 Uber Pickup</div>
-    <a class="sidebar-link" data-step="11" onclick="jumpTo(11)"><span class="nav-dot" style="background:#ff6b00"></span>1. Greeting</a>
-    <a class="sidebar-link" data-step="12" onclick="jumpTo(12)"><span class="nav-dot" style="background:#ff6b00"></span>2. Coverage</a>
-    <a class="sidebar-link" data-step="13" onclick="jumpTo(13)"><span class="nav-dot" style="background:#ff6b00"></span>3. Service & Cost</a>
-    <a class="sidebar-link" data-step="14" onclick="jumpTo(14)"><span class="nav-dot" style="background:#ff6b00"></span>4. Items & Date</a>
-    <a class="sidebar-link" data-step="15" onclick="jumpTo(15)"><span class="nav-dot" style="background:#ff6b00"></span>5. Charity & Cost</a>
-    <a class="sidebar-link" data-step="16" onclick="jumpTo(16)"><span class="nav-dot" style="background:#ff6b00"></span>6. Contact Info</a>
-    <a class="sidebar-link" data-step="17" onclick="jumpTo(17)"><span class="nav-dot" style="background:#ff6b00"></span>7. Cancellation</a>
-    <a class="sidebar-link" data-step="18" onclick="jumpTo(18)"><span class="nav-dot" style="background:#ff6b00"></span>8. Payment</a>
-    <a class="sidebar-link" data-step="19" onclick="jumpTo(19)"><span class="nav-dot" style="background:#ff6b00"></span>9. Recap</a>
-    <a class="sidebar-link" data-step="20" onclick="jumpTo(20)"><span class="nav-dot" style="background:#ff6b00"></span>10. Thank You</a>
+    <div class="sidebar-divider" style="display:none;">🚗 Uber Pickup</div>
+    <a class="sidebar-link" data-step="11" style="display:none;" onclick="jumpTo(11)"><span class="nav-dot" style="background:#ff6b00"></span>1. Greeting</a>
+    <a class="sidebar-link" data-step="12" style="display:none;" onclick="jumpTo(12)"><span class="nav-dot" style="background:#ff6b00"></span>2. Coverage</a>
+    <a class="sidebar-link" data-step="13" style="display:none;" onclick="jumpTo(13)"><span class="nav-dot" style="background:#ff6b00"></span>3. Service & Cost</a>
+    <a class="sidebar-link" data-step="14" style="display:none;" onclick="jumpTo(14)"><span class="nav-dot" style="background:#ff6b00"></span>4. Items & Date</a>
+    <a class="sidebar-link" data-step="15" style="display:none;" onclick="jumpTo(15)"><span class="nav-dot" style="background:#ff6b00"></span>5. Charity & Cost</a>
+    <a class="sidebar-link" data-step="16" style="display:none;" onclick="jumpTo(16)"><span class="nav-dot" style="background:#ff6b00"></span>6. Contact Info</a>
+    <a class="sidebar-link" data-step="17" style="display:none;" onclick="jumpTo(17)"><span class="nav-dot" style="background:#ff6b00"></span>7. Cancellation</a>
+    <a class="sidebar-link" data-step="18" style="display:none;" onclick="jumpTo(18)"><span class="nav-dot" style="background:#ff6b00"></span>8. Payment</a>
+    <a class="sidebar-link" data-step="19" style="display:none;" onclick="jumpTo(19)"><span class="nav-dot" style="background:#ff6b00"></span>9. Recap</a>
+    <a class="sidebar-link" data-step="20" style="display:none;" onclick="jumpTo(20)"><span class="nav-dot" style="background:#ff6b00"></span>10. Thank You</a>
   </nav>
 
   <div class="main-content">
+
+    <!-- Script Selector -->
+    <div class="script-selector-bar">
+      <span class="script-selector-label">📋 Select Script:</span>
+      <button class="script-btn active-script-regular" id="btn-regular" onclick="selectScript('regular')">🏠 Regular Pickup (11 steps)</button>
+      <button class="script-btn" id="btn-uber" onclick="selectScript('uber')">🚗 Uber Pickup (10 steps)</button>
+
+    </div>
 
     <div class="progress-container">
       <div class="progress-header">
@@ -275,6 +322,7 @@
       <div class="progress-steps" id="progressDots"></div>
     </div>
 
+  <div id="section-regular">
   <div class="section-divider">
     <div class="section-divider-line"></div>
     <span class="section-divider-label label-regular">🏠 Regular Pickup Script</span>
@@ -405,6 +453,9 @@
     </div>
   </div>
 
+  </div><!-- end section-regular -->
+
+  <div id="section-uber" style="display:none;">
   <div class="section-divider">
     <div class="section-divider-line"></div>
     <span class="section-divider-label label-uber">🚗 Uber Pickup Script</span>
@@ -522,6 +573,8 @@
 </div>
 </div>
 </div>
+
+  </div><!-- end section-uber -->
 
 <!-- REFERENCE SECTION -->
 <div style="padding: 0 40px 20px;">
@@ -652,14 +705,48 @@
 <button class="reset-btn" style="margin: 0 40px 40px;" onclick="resetFlow()">Reset Entire Flow</button>
 
 <script>
-  const totalSteps = 21;
-  const dotsContainer = document.getElementById('progressDots');
-  for (let i = 0; i < totalSteps; i++) {
-    const dot = document.createElement('div');
-    dot.className = 'progress-step-dot';
-    dot.id = `dot-${i}`;
-    dotsContainer.appendChild(dot);
+  let currentScript = 'regular';
+  const SCRIPT_STEPS = { regular: 11, uber: 10 };
+
+  function selectScript(type) {
+    currentScript = type;
+    // Show/hide sections
+    document.getElementById('section-regular').style.display = type === 'regular' ? '' : 'none';
+    document.getElementById('section-uber').style.display = type === 'uber' ? '' : 'none';
+    // Sidebar
+    document.querySelectorAll('.sidebar-link').forEach(link => {
+      const step = parseInt(link.getAttribute('data-step'));
+      if (type === 'regular') link.style.display = step <= 10 ? '' : 'none';
+      else link.style.display = step >= 11 ? '' : 'none';
+    });
+    document.querySelectorAll('.sidebar-divider').forEach((d, i) => {
+      d.style.display = (i === 0 && type === 'regular') || (i === 1 && type === 'uber') ? '' : 'none';
+    });
+    // Buttons
+    document.getElementById('btn-regular').className = 'script-btn' + (type === 'regular' ? ' active-script-regular' : '');
+    document.getElementById('btn-uber').className = 'script-btn' + (type === 'uber' ? ' active-script-uber' : '');
+    // Reset progress
+    document.querySelectorAll('.step-item').forEach(s => s.classList.remove('active','completed'));
+    rebuildDots();
+    updateProgress();
+    updateSidebar();
+    window.scrollTo({top: 0, behavior: 'smooth'});
   }
+
+  function rebuildDots() {
+    const total = SCRIPT_STEPS[currentScript];
+    const dotsContainer = document.getElementById('progressDots');
+    dotsContainer.innerHTML = '';
+    for (let i = 0; i < total; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'progress-step-dot';
+      dot.id = `dot-${i}`;
+      dotsContainer.appendChild(dot);
+    }
+  }
+
+  const dotsContainer = document.getElementById('progressDots');
+  rebuildDots();
 
   document.querySelectorAll('.step-header').forEach((header) => {
     header.addEventListener('click', () => {
@@ -672,8 +759,10 @@
   });
 
   function updateProgress() {
-    const steps = document.querySelectorAll('.step-item');
-    const completed = document.querySelectorAll('.step-item.completed').length;
+    const totalSteps = SCRIPT_STEPS[currentScript];
+    const sectionEl = document.getElementById('section-' + currentScript);
+    const steps = sectionEl ? sectionEl.querySelectorAll('.step-item') : [];
+    const completed = sectionEl ? sectionEl.querySelectorAll('.step-item.completed').length : 0;
     const pct = Math.round((completed / totalSteps) * 100);
     document.getElementById('progressFill').style.width = pct + '%';
     document.getElementById('progressCount').textContent = `${completed} / ${totalSteps} steps`;
