@@ -921,13 +921,16 @@
     }
   }
 
-  function showTab(tabId) {
-    document.querySelectorAll('.ref-tab-content').forEach(t => t.style.display = 'none');
-    document.querySelectorAll('.ref-tab-btn').forEach(b => b.classList.remove('active-tab'));
-    document.getElementById(tabId).style.display = 'block';
-    const btnMap = { 'tab-xl': 'btn-xl', 'tab-specialty': 'btn-specialty', 'tab-restricted': 'btn-restricted', 'tab-bed': 'btn-bed' };
-    document.getElementById(btnMap[tabId]).classList.add('active-tab');
-  }
+ function showTab(tabId) {
+  document.querySelectorAll('.ref-tab-content').forEach(t => t.style.display = 'none');
+  document.querySelectorAll('.ref-tab-btn').forEach(b => b.classList.remove('active-tab'));
+  const target = document.getElementById(tabId);
+  target.style.display = 'block';
+  document.getElementById('btn-' + tabId.replace('tab-', '')).classList.add('active-tab');
+  setTimeout(() => {
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 50);
+}
 
   function resetFlow() {
     searchBar.value = "";
