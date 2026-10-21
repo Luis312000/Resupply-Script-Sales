@@ -257,7 +257,116 @@
     [data-theme="dark"] .script-btn.active-script-regular { background: #2a5298; border-color: #2a5298; }
     [data-theme="dark"] .script-btn.active-script-uber { background: #e05500; border-color: #e05500; }
     .script-description { font-size: 12px; color: var(--text-color); opacity: 0.7; margin-left: auto; }
-      </style>
+        /* ---------- Updates panel ---------- */
+  .upd-panel {
+    margin: 0 0 24px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--card-bg);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    overflow: hidden;
+  }
+  .upd-header {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    padding: 14px 20px;
+    background: linear-gradient(90deg, #1a3a6b, #2a5298);
+    color: #fff;
+  }
+  .upd-header-title { font-size: 16px; font-weight: 700; letter-spacing: .3px; }
+  .upd-count {
+    background: #ff6b00; color: #fff; font-size: 12px; font-weight: 700;
+    padding: 2px 10px; border-radius: 20px;
+  }
+  .upd-count.zero { background: rgba(255,255,255,.25); }
+  .upd-header-sub { font-size: 12px; opacity: .8; }
+  .upd-header-actions { margin-left: auto; display: flex; gap: 8px; }
+  .upd-hbtn {
+    background: rgba(255,255,255,.15); color: #fff; border: 1px solid rgba(255,255,255,.35);
+    padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer;
+    transition: background .2s;
+  }
+  .upd-hbtn:hover { background: rgba(255,255,255,.3); }
+
+  .upd-body { padding: 16px 20px 20px; }
+  .upd-panel.collapsed .upd-body { display: none; }
+
+  .upd-filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+  .upd-chip {
+    padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border);
+    background: var(--bg-color); color: var(--text-color);
+    font-size: 12px; font-weight: 700; cursor: pointer; transition: all .2s;
+  }
+  .upd-chip:hover { border-color: #1a3a6b; }
+  .upd-chip.active { background: #1a3a6b; color: #fff; border-color: #1a3a6b; }
+  [data-theme="dark"] .upd-chip.active { background: #2a5298; border-color: #2a5298; }
+
+  .upd-grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+
+  .upd-card {
+    position: relative;
+    background: var(--bg-color);
+    border: 1px solid var(--border);
+    border-left: 5px solid #1a3a6b;
+    border-radius: 10px;
+    padding: 16px;
+    display: flex; flex-direction: column; gap: 10px;
+    transition: box-shadow .2s, transform .2s;
+  }
+  .upd-card:hover { box-shadow: 0 6px 18px rgba(0,0,0,.10); transform: translateY(-1px); }
+  .upd-card.unread { border-left-color: #ff6b00; }
+  .upd-card.hidden-card { display: none; }
+
+  .upd-card-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .upd-badge-new {
+    background: #ff6b00; color: #fff; font-size: 10px; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 1px; padding: 2px 8px; border-radius: 4px;
+    display: none;
+  }
+  .upd-card.unread .upd-badge-new { display: inline-block; }
+  .upd-tag {
+    font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+    padding: 2px 8px; border-radius: 4px; border: 1px solid transparent;
+  }
+  .upd-tag.faq    { background: #e8f4fd; color: #1a3a6b; border-color: #b8d4f0; }
+  .upd-tag.script { background: #fff0e0; color: #c45000; border-color: #ffc999; }
+  .upd-tag.rule   { background: #fde8e8; color: #c0392b; border-color: #f5b7b1; }
+  [data-theme="dark"] .upd-tag.faq    { background: #0d2040; color: #7ab3e0; border-color: #1a3a6b; }
+  [data-theme="dark"] .upd-tag.script { background: #2a1500; color: #ff9a50; border-color: #c45000; }
+  [data-theme="dark"] .upd-tag.rule   { background: #3a1010; color: #ff8a80; border-color: #7a2020; }
+  .upd-date { margin-left: auto; font-size: 11px; opacity: .6; }
+
+  .upd-title { margin: 0; font-size: 14px; font-weight: 700; color: var(--step-title); line-height: 1.35; }
+  .upd-when  { font-size: 12px; opacity: .75; margin: 0; }
+
+  .upd-quote {
+    border-left: 4px solid var(--accent-color);
+    padding: 8px 12px; margin: 0;
+    font-style: italic; font-size: 13.5px; line-height: 1.55;
+    background: var(--card-bg); border-radius: 0 8px 8px 0;
+  }
+  .upd-quote p { margin: 0 0 8px; }
+  .upd-quote p:last-child { margin-bottom: 0; }
+
+  .upd-note {
+    font-size: 12.5px; background: var(--note-bg); color: var(--note-text);
+    padding: 8px 12px; border-radius: 8px; line-height: 1.5;
+  }
+  .upd-note.danger { background: #fde8e8; color: #922b21; font-weight: 700; }
+  [data-theme="dark"] .upd-note.danger { background: #3a1010; color: #ff8a80; }
+
+  .upd-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; padding-top: 4px; }
+  .upd-btn {
+    padding: 7px 12px; border-radius: 8px; border: 1px solid var(--border);
+    background: var(--card-bg); color: var(--text-color);
+    font-size: 12px; font-weight: 700; cursor: pointer; transition: all .2s;
+  }
+  .upd-btn:hover { border-color: #1a3a6b; color: #1a3a6b; }
+  [data-theme="dark"] .upd-btn:hover { border-color: #7ab3e0; color: #7ab3e0; }
+  .upd-btn.copied { background: #27ae60; color: #fff; border-color: #27ae60; }
+  .upd-btn.read { margin-left: auto; }
+
+  @media (max-width: 700px) { .upd-grid { grid-template-columns: 1fr; } }
+</style>
 </head>
 <body>
 
@@ -271,6 +380,91 @@
 </div>
 
 <div class="page-wrapper">
+<div class="upd-panel" id="updPanel">
+  <div class="upd-header">
+    <span class="upd-header-title">📢 Latest Script Updates</span>
+    <span class="upd-count" id="updCount">3 new</span>
+    <span class="upd-header-sub">Updated Oct 21, 2026</span>
+    <div class="upd-header-actions">
+      <button class="upd-hbtn" id="updMarkAll" type="button">✓ Mark all as read</button>
+      <button class="upd-hbtn" id="updToggle" type="button">▾ Collapse</button>
+    </div>
+  </div>
+
+  <div class="upd-body">
+    <div class="upd-filters" id="updFilters">
+      <button class="upd-chip active" data-filter="all" type="button">All</button>
+      <button class="upd-chip" data-filter="faq" type="button">❓ Objections / FAQ</button>
+      <button class="upd-chip" data-filter="script" type="button">📞 Scripts</button>
+      <button class="upd-chip" data-filter="rule" type="button">⚠️ Rules</button>
+    </div>
+
+    <div class="upd-grid">
+
+      <!-- UPDATE 1: Credit card storage -->
+      <div class="upd-card unread" data-id="upd-card-storage" data-type="faq">
+        <div class="upd-card-top">
+          <span class="upd-badge-new">New</span>
+          <span class="upd-tag faq">FAQ · Payment</span>
+          <span class="upd-date">Oct 21, 2026</span>
+        </div>
+        <h4 class="upd-title">Does the donor's credit card information get stored in our system?</h4>
+        <p class="upd-when">Use when: the donor hesitates or asks about card security during the payment step.</p>
+        <div class="upd-quote">
+          <p>"No, ReSupply will not store your credit card information. All payment details are securely handled and stored by our trusted payment processor, <strong>Stripe</strong>, which is fully <strong>PCI compliant</strong>. This means your information is encrypted and protected according to the highest industry standards. We only use the card information for this specific pickup, and it will not be used for any other purpose."</p>
+        </div>
+        <div class="upd-note"><strong>Note:</strong> If the donor prefers not to proceed with payment, that's completely okay. However, explain that without a valid payment method on file, we're unable to confirm the booking.</div>
+        <div class="upd-actions">
+          <button class="upd-btn" data-copy type="button">📋 Copy script</button>
+          <button class="upd-btn" data-goto="payment" type="button">➜ Go to Payment step</button>
+          <button class="upd-btn read" data-read type="button">✓ Got it</button>
+        </div>
+      </div>
+
+      <!-- UPDATE 2: Drop-off objection -->
+      <div class="upd-card unread" data-id="upd-card-dropoff" data-type="faq">
+        <div class="upd-card-top">
+          <span class="upd-badge-new">New</span>
+          <span class="upd-tag faq">FAQ · Objection</span>
+          <span class="upd-date">Oct 21, 2026</span>
+        </div>
+        <h4 class="upd-title">"Can I drop off the items in this case?"</h4>
+        <p class="upd-when">Use when: the donor wants to avoid the pickup fee and asks to drop off the items themselves.</p>
+        <div class="upd-quote">
+          <p>"Dropping off the items is definitely an option. However, we do try to save you time and effort for the reason that some charities have restrictions with some of the items that are being donated. Therefore, you run the risk of going back home with some items if they are not accepted by the charities for some reason."</p>
+          <p>"We have a system where the haulers are knowledgeable of which items are not accepted by the charities in the area. So, if they know that no charity would accept the items, we would take the items to a recycling center for a small recycling fee. But again, this is optional so it would be up to you if you want to add that one item to the list or not. In other words, we will be taking care of everything."</p>
+        </div>
+        <div class="upd-note"><strong>SALVO version:</strong> "If the items are not accepted by the charity, then we would take them to a recycling center for a small additional fee. It would be up to you if you want to add it to the list or not."</div>
+        <div class="upd-note danger">🚫 For SALVO calls, we CANNOT mention the partnership with other charities.</div>
+        <div class="upd-actions">
+          <button class="upd-btn" data-copy type="button">📋 Copy script</button>
+          <button class="upd-btn" data-copy-alt type="button">📋 Copy SALVO version</button>
+          <button class="upd-btn read" data-read type="button">✓ Got it</button>
+        </div>
+      </div>
+
+      <!-- UPDATE 3: Call back script -->
+      <div class="upd-card unread" data-id="upd-card-callback" data-type="script">
+        <div class="upd-card-top">
+          <span class="upd-badge-new">New</span>
+          <span class="upd-tag script">Script · Call Back</span>
+          <span class="upd-date">Oct 21, 2026</span>
+        </div>
+        <h4 class="upd-title">Call Back Script</h4>
+        <p class="upd-when">Use when: the donor can't continue right now (busy, not ready to book, needs to check items).</p>
+        <div class="upd-quote">
+          <p>"Your donation is important to us. We can call you back later today or tomorrow. What time works best for you?"</p>
+        </div>
+        <div class="upd-actions">
+          <button class="upd-btn" data-copy type="button">📋 Copy script</button>
+          <button class="upd-btn read" data-read type="button">✓ Got it</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <div id="scriptRoot">
 <div class="page-layout">
 
@@ -904,7 +1098,111 @@
     updateSidebar();
     window.scrollTo({top: 0, behavior: 'smooth'});
   }
+  (function initUpdatesPanel() {
+    const KEY = 'resupply_updates_read_v1';
+    const panel = document.getElementById('updPanel');
+    if (!panel) return;
+    const cards = Array.from(panel.querySelectorAll('.upd-card'));
+    const countEl = document.getElementById('updCount');
+
+    // ---- storage seguro (si falla, el panel igual funciona) ----
+    function getRead() {
+      try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) { return []; }
+    }
+    function saveRead(list) {
+      try { localStorage.setItem(KEY, JSON.stringify(list)); } catch (e) {}
+    }
+
+    function refresh() {
+      const read = getRead();
+      let unread = 0;
+      cards.forEach(c => {
+        const isRead = read.includes(c.dataset.id);
+        c.classList.toggle('unread', !isRead);
+        if (!isRead) unread++;
+        const btn = c.querySelector('[data-read]');
+        if (btn) btn.textContent = isRead ? '✓ Read' : '✓ Got it';
+      });
+      countEl.textContent = unread > 0 ? unread + ' new' : 'All read';
+      countEl.classList.toggle('zero', unread === 0);
+    }
+
+    // ---- marcar como leído ----
+    panel.querySelectorAll('[data-read]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.closest('.upd-card').dataset.id;
+        const read = getRead();
+        if (!read.includes(id)) read.push(id);
+        saveRead(read);
+        refresh();
+      });
+    });
+    document.getElementById('updMarkAll').addEventListener('click', () => {
+      saveRead(cards.map(c => c.dataset.id));
+      refresh();
+    });
+
+    // ---- colapsar / expandir ----
+    const toggleBtn = document.getElementById('updToggle');
+    toggleBtn.addEventListener('click', () => {
+      const collapsed = panel.classList.toggle('collapsed');
+      toggleBtn.textContent = collapsed ? '▸ Expand' : '▾ Collapse';
+    });
+
+    // ---- filtros ----
+    panel.querySelectorAll('.upd-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        panel.querySelectorAll('.upd-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        const f = chip.dataset.filter;
+        cards.forEach(c => c.classList.toggle('hidden-card', f !== 'all' && c.dataset.type !== f));
+      });
+    });
+
+    // ---- copiar script al portapapeles ----
+    function flash(btn, msg) {
+      const old = btn.textContent;
+      btn.textContent = msg; btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = old; btn.classList.remove('copied'); }, 1500);
+    }
+    function copyText(text, btn) {
+      const done = () => flash(btn, '✓ Copied!');
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(() => fallback());
+      } else { fallback(); }
+      function fallback() {
+        const ta = document.createElement('textarea');
+        ta.value = text; document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); done(); } catch (e) { flash(btn, 'Copy failed'); }
+        document.body.removeChild(ta);
+      }
+    }
+    panel.querySelectorAll('[data-copy]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const quote = btn.closest('.upd-card').querySelector('.upd-quote');
+        copyText(quote.innerText.trim(), btn);
+      });
+    });
+    panel.querySelectorAll('[data-copy-alt]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const note = btn.closest('.upd-card').querySelector('.upd-note');
+        copyText(note.innerText.replace(/^SALVO version:\s*/i, '').trim(), btn);
+      });
+    });
+
+    // ---- saltar al paso correspondiente del script ----
+    panel.querySelectorAll('[data-goto]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        // "payment": paso 9 del Regular (índice 8) / U8 del Uber (índice 18)
+        if (typeof selectScript === 'function' && typeof jumpTo === 'function') {
+          const isUber = (typeof currentScript !== 'undefined' && currentScript === 'uber');
+          jumpTo(isUber ? 18 : 8);
+        }
+      });
+    });
+
+    refresh();
+  })();
 </script>
 </body>
 </html>
-
