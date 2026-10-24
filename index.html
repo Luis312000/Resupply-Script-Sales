@@ -257,76 +257,45 @@
     [data-theme="dark"] .script-btn.active-script-regular { background: #2a5298; border-color: #2a5298; }
     [data-theme="dark"] .script-btn.active-script-uber { background: #e05500; border-color: #e05500; }
     .script-description { font-size: 12px; color: var(--text-color); opacity: 0.7; margin-left: auto; }
-        /* ---------- Updates panel ---------- */
-  .upd-panel {
-    margin: 0 0 24px;
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    background: var(--card-bg);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-    overflow: hidden;
-  }
-  .upd-header {
-    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
-    padding: 14px 20px;
-    background: linear-gradient(90deg, #1a3a6b, #2a5298);
-    color: #fff;
-  }
+        /* ---------- Quick Access panel ---------- */
+  .upd-panel { margin: 0 0 24px; border: 1px solid var(--border); border-radius: 14px; background: var(--card-bg); box-shadow: 0 4px 16px rgba(0,0,0,0.06); overflow: hidden; }
+  .upd-header { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 12px 20px; background: linear-gradient(90deg, #1a3a6b, #2a5298); color: #fff; }
   .upd-header-title { font-size: 16px; font-weight: 700; letter-spacing: .3px; }
-  .upd-count {
-    background: #ff6b00; color: #fff; font-size: 12px; font-weight: 700;
-    padding: 2px 10px; border-radius: 20px;
-  }
-  .upd-count.zero { background: rgba(255,255,255,.25); }
   .upd-header-sub { font-size: 12px; opacity: .8; }
   .upd-header-actions { margin-left: auto; display: flex; gap: 8px; }
-  .upd-hbtn {
-    background: rgba(255,255,255,.15); color: #fff; border: 1px solid rgba(255,255,255,.35);
-    padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer;
-    transition: background .2s;
-  }
+  .upd-hbtn { background: rgba(255,255,255,.15); color: #fff; border: 1px solid rgba(255,255,255,.35); padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; transition: background .2s; }
   .upd-hbtn:hover { background: rgba(255,255,255,.3); }
-
-  .upd-body { padding: 16px 20px 20px; }
+  .upd-body { padding: 14px 20px 18px; }
   .upd-panel.collapsed .upd-body { display: none; }
 
-  .upd-filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
-  .upd-chip {
-    padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border);
-    background: var(--bg-color); color: var(--text-color);
-    font-size: 12px; font-weight: 700; cursor: pointer; transition: all .2s;
-  }
-  .upd-chip:hover { border-color: #1a3a6b; }
-  .upd-chip.active { background: #1a3a6b; color: #fff; border-color: #1a3a6b; }
-  [data-theme="dark"] .upd-chip.active { background: #2a5298; border-color: #2a5298; }
+  .qa-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+  .qa-tab { padding: 7px 16px; border-radius: 20px; border: 1px solid var(--border); background: var(--bg-color); color: var(--text-color); font-size: 13px; font-weight: 700; cursor: pointer; transition: all .2s; display: inline-flex; align-items: center; gap: 6px; }
+  .qa-tab:hover { border-color: #1a3a6b; }
+  .qa-tab.active { background: #1a3a6b; color: #fff; border-color: #1a3a6b; }
+  [data-theme="dark"] .qa-tab.active { background: #2a5298; border-color: #2a5298; }
+  .qa-count { background: rgba(0,0,0,.12); border-radius: 10px; padding: 0 7px; font-size: 11px; min-width: 18px; text-align: center; }
+  .qa-tab.active .qa-count { background: rgba(255,255,255,.25); }
+  .qa-count.has-new { background: #ff6b00; color: #fff; }
 
-  .upd-grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .qa-list { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+  .qa-row { display: flex; align-items: center; gap: 10px; text-align: left; width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-left: 4px solid #1a3a6b; border-radius: 8px; background: var(--bg-color); color: var(--text-color); font-size: 13.5px; font-weight: 600; line-height: 1.35; cursor: pointer; transition: all .15s; }
+  .qa-row:hover { border-left-color: #ff6b00; box-shadow: 0 4px 12px rgba(0,0,0,.10); transform: translateY(-1px); }
+  .qa-row.unread { border-left-color: #ff6b00; }
+  .qa-row-title { flex: 1; }
+  .qa-new { background: #ff6b00; color: #fff; font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; padding: 2px 7px; border-radius: 4px; }
+  .qa-arrow { opacity: .45; }
+  .qa-empty { opacity: .65; font-size: 13px; padding: 8px 2px; grid-column: 1 / -1; }
 
-  .upd-card {
-    position: relative;
-    background: var(--bg-color);
-    border: 1px solid var(--border);
-    border-left: 5px solid #1a3a6b;
-    border-radius: 10px;
-    padding: 16px;
-    display: flex; flex-direction: column; gap: 10px;
-    transition: box-shadow .2s, transform .2s;
-  }
-  .upd-card:hover { box-shadow: 0 6px 18px rgba(0,0,0,.10); transform: translateY(-1px); }
-  .upd-card.unread { border-left-color: #ff6b00; }
-  .upd-card.hidden-card { display: none; }
+  .qa-modal { position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,.55); display: none; align-items: flex-start; justify-content: center; padding: 70px 16px 20px; overflow-y: auto; }
+  .qa-modal.open { display: flex; }
+  .qa-dialog { position: relative; width: 100%; max-width: 680px; background: var(--card-bg); color: var(--text-color); border-radius: 14px; box-shadow: 0 20px 50px rgba(0,0,0,.35); padding: 18px; }
+  .qa-close { position: absolute; top: 10px; right: 10px; width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); background: var(--bg-color); color: var(--text-color); cursor: pointer; font-size: 14px; font-weight: 700; z-index: 1; }
+  .qa-close:hover { background: #c0392b; color: #fff; border-color: #c0392b; }
+  .qa-dialog .upd-card { transform: none !important; box-shadow: none !important; border-left-color: #1a3a6b; margin-top: 4px; }
 
-  .upd-card-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-  .upd-badge-new {
-    background: #ff6b00; color: #fff; font-size: 10px; font-weight: 800;
-    text-transform: uppercase; letter-spacing: 1px; padding: 2px 8px; border-radius: 4px;
-    display: none;
-  }
-  .upd-card.unread .upd-badge-new { display: inline-block; }
-  .upd-tag {
-    font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
-    padding: 2px 8px; border-radius: 4px; border: 1px solid transparent;
-  }
+  .upd-card { position: relative; background: var(--bg-color); border: 1px solid var(--border); border-left: 5px solid #1a3a6b; border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+  .upd-card-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding-right: 36px; }
+  .upd-tag { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; padding: 2px 8px; border-radius: 4px; border: 1px solid transparent; }
   .upd-tag.faq    { background: #e8f4fd; color: #1a3a6b; border-color: #b8d4f0; }
   .upd-tag.script { background: #fff0e0; color: #c45000; border-color: #ffc999; }
   .upd-tag.rule   { background: #fde8e8; color: #c0392b; border-color: #f5b7b1; }
@@ -334,38 +303,20 @@
   [data-theme="dark"] .upd-tag.script { background: #2a1500; color: #ff9a50; border-color: #c45000; }
   [data-theme="dark"] .upd-tag.rule   { background: #3a1010; color: #ff8a80; border-color: #7a2020; }
   .upd-date { margin-left: auto; font-size: 11px; opacity: .6; }
-
-  .upd-title { margin: 0; font-size: 14px; font-weight: 700; color: var(--step-title); line-height: 1.35; }
+  .upd-title { margin: 0; font-size: 15px; font-weight: 700; color: var(--step-title); line-height: 1.35; }
   .upd-when  { font-size: 12px; opacity: .75; margin: 0; }
-
-  .upd-quote {
-    border-left: 4px solid var(--accent-color);
-    padding: 8px 12px; margin: 0;
-    font-style: italic; font-size: 13.5px; line-height: 1.55;
-    background: var(--card-bg); border-radius: 0 8px 8px 0;
-  }
+  .upd-quote { border-left: 4px solid var(--accent-color); padding: 8px 12px; margin: 0; font-style: italic; font-size: 14px; line-height: 1.55; background: var(--card-bg); border-radius: 0 8px 8px 0; }
   .upd-quote p { margin: 0 0 8px; }
   .upd-quote p:last-child { margin-bottom: 0; }
-
-  .upd-note {
-    font-size: 12.5px; background: var(--note-bg); color: var(--note-text);
-    padding: 8px 12px; border-radius: 8px; line-height: 1.5;
-  }
+  .upd-note { font-size: 12.5px; background: var(--note-bg); color: var(--note-text); padding: 8px 12px; border-radius: 8px; line-height: 1.5; }
   .upd-note.danger { background: #fde8e8; color: #922b21; font-weight: 700; }
   [data-theme="dark"] .upd-note.danger { background: #3a1010; color: #ff8a80; }
-
-  .upd-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; padding-top: 4px; }
-  .upd-btn {
-    padding: 7px 12px; border-radius: 8px; border: 1px solid var(--border);
-    background: var(--card-bg); color: var(--text-color);
-    font-size: 12px; font-weight: 700; cursor: pointer; transition: all .2s;
-  }
+  .upd-actions { display: flex; gap: 8px; flex-wrap: wrap; padding-top: 4px; }
+  .upd-btn { padding: 7px 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--card-bg); color: var(--text-color); font-size: 12px; font-weight: 700; cursor: pointer; transition: all .2s; }
   .upd-btn:hover { border-color: #1a3a6b; color: #1a3a6b; }
   [data-theme="dark"] .upd-btn:hover { border-color: #7ab3e0; color: #7ab3e0; }
   .upd-btn.copied { background: #27ae60; color: #fff; border-color: #27ae60; }
-  .upd-btn.read { margin-left: auto; }
-
-  @media (max-width: 700px) { .upd-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 700px) { .qa-list { grid-template-columns: 1fr; } .qa-modal { padding-top: 60px; } }
 </style>
 </head>
 <body>
@@ -382,29 +333,34 @@
 <div class="page-wrapper">
 <div class="upd-panel" id="updPanel">
   <div class="upd-header">
-    <span class="upd-header-title">📢 Latest Script Updates</span>
-    <span class="upd-count" id="updCount">3 new</span>
-    <span class="upd-header-sub">Updated Oct 21, 2026</span>
+    <span class="upd-header-title">⚡ Quick Access</span>
+    <span class="upd-header-sub">Click a title to open the full script</span>
     <div class="upd-header-actions">
-      <button class="upd-hbtn" id="updMarkAll" type="button">✓ Mark all as read</button>
       <button class="upd-hbtn" id="updToggle" type="button">▾ Collapse</button>
     </div>
   </div>
-
   <div class="upd-body">
-    <div class="upd-filters" id="updFilters">
-      <button class="upd-chip active" data-filter="all" type="button">All</button>
-      <button class="upd-chip" data-filter="faq" type="button">❓ Objections / FAQ</button>
-      <button class="upd-chip" data-filter="script" type="button">📞 Scripts</button>
-      <button class="upd-chip" data-filter="rule" type="button">⚠️ Rules</button>
+    <div class="qa-tabs" role="tablist">
+      <button class="qa-tab active" data-tab="updates" type="button">📢 Updates <span class="qa-count" id="qaCountUpdates"></span></button>
+      <button class="qa-tab" data-tab="faq" type="button">❓ FAQ <span class="qa-count" id="qaCountFaq"></span></button>
+      <button class="qa-tab" data-tab="rebuttals" type="button">🛡️ Rebuttals <span class="qa-count" id="qaCountRebuttals"></span></button>
     </div>
+    <div class="qa-list" id="qaList"></div>
+  </div>
 
-    <div class="upd-grid">
-
+  <!--
+    ================= CONTENIDO (aquí se agregan items nuevos) =================
+    Para agregar un item: copia una tarjeta de abajo y cambia data-id (único) y data-cats.
+      data-cats="updates"            -> aparece en Updates
+      data-cats="faq"                -> aparece en FAQ
+      data-cats="rebuttals"          -> aparece en Rebuttals
+      data-cats="updates faq"        -> aparece en ambas
+    Un item en "updates" muestra el punto naranja NEW hasta que el agente lo abre.
+  -->
+  <div id="qaStore" hidden>
       <!-- UPDATE 1: Credit card storage -->
-      <div class="upd-card unread" data-id="upd-card-storage" data-type="faq">
+      <div class="upd-card" data-id="upd-card-storage" data-cats="updates faq">
         <div class="upd-card-top">
-          <span class="upd-badge-new">New</span>
           <span class="upd-tag faq">FAQ · Payment</span>
           <span class="upd-date">Oct 21, 2026</span>
         </div>
@@ -417,15 +373,12 @@
         <div class="upd-actions">
           <button class="upd-btn" data-copy type="button">📋 Copy script</button>
           <button class="upd-btn" data-goto="payment" type="button">➜ Go to Payment step</button>
-          <button class="upd-btn read" data-read type="button">✓ Got it</button>
         </div>
       </div>
-
       <!-- UPDATE 2: Drop-off objection -->
-      <div class="upd-card unread" data-id="upd-card-dropoff" data-type="faq">
+      <div class="upd-card" data-id="upd-card-dropoff" data-cats="updates rebuttals">
         <div class="upd-card-top">
-          <span class="upd-badge-new">New</span>
-          <span class="upd-tag faq">FAQ · Objection</span>
+          <span class="upd-tag rule">Rebuttal · Objection</span>
           <span class="upd-date">Oct 21, 2026</span>
         </div>
         <h4 class="upd-title">"Can I drop off the items in this case?"</h4>
@@ -439,14 +392,11 @@
         <div class="upd-actions">
           <button class="upd-btn" data-copy type="button">📋 Copy script</button>
           <button class="upd-btn" data-copy-alt type="button">📋 Copy SALVO version</button>
-          <button class="upd-btn read" data-read type="button">✓ Got it</button>
         </div>
       </div>
-
       <!-- UPDATE 3: Call back script -->
-      <div class="upd-card unread" data-id="upd-card-callback" data-type="script">
+      <div class="upd-card" data-id="upd-card-callback" data-cats="updates">
         <div class="upd-card-top">
-          <span class="upd-badge-new">New</span>
           <span class="upd-tag script">Script · Call Back</span>
           <span class="upd-date">Oct 21, 2026</span>
         </div>
@@ -457,11 +407,15 @@
         </div>
         <div class="upd-actions">
           <button class="upd-btn" data-copy type="button">📋 Copy script</button>
-          <button class="upd-btn read" data-read type="button">✓ Got it</button>
         </div>
       </div>
+  </div>
+</div>
 
-    </div>
+<div class="qa-modal" id="qaModal" aria-hidden="true">
+  <div class="qa-dialog" role="dialog" aria-modal="true">
+    <button class="qa-close" id="qaClose" type="button" aria-label="Close">✕</button>
+    <div id="qaModalBody"></div>
   </div>
 </div>
 
@@ -571,7 +525,7 @@
       <div class="quote"><span class="highlight">"We do have multiple home pickup times available, are mornings or afternoons better for you?"</span></div>
       <div class="quote"><span class="highlight">"Okay so we have availability on (list 2-3 slots e.g. Tuesday afternoon, Wednesday, or Friday)."</span></div>
       <p>Book time slot.</p>
-      <div class="quote"><span class="highlight">"Now before we proceed any further to finalize your donation pickup, a few important notes: Due to rising trucking costs since the pandemic, {insert charity name} can no longer fully cover the expense of home donation pickups. To keep pickups available, they've officially partnered with our veteran-run team at ReSupply to handle collections on their behalf."</span></div>
+      <div class="quote"><span class="highlight">"Before we proceed, please note that our priority pickup service has a cost. Let me walk you through the details. This is to cover the truck, labor, and fuel."</span></div>
       <div class="quote">"ReSupply uses trained, insured haulers to pick up your items and deliver them directly to the <strong>{insert charity name}</strong>. There could be a small fee for this white-glove pickup, but by sponsoring it, you're actually making the donation completely free for the <strong>{insert charity name}</strong>, and doing something really impactful for your community."</div>
     </div>
   </div>
@@ -607,8 +561,6 @@
       <div class="quote">"It would only cost <strong>{Insert booking fee}</strong> to reserve your pickup here over the phone, and the remaining cost estimate due on site would be ______________."</div>
       <p><em>Pause and hold breath / objection handle.</em></p>
       <p><strong>Explain by items, staircases, disassembly — other options are more expensive.</strong></p>
-      <div class="instruction">If a Sponsorship Applies</div>
-      <div class="quote">"Great news! {insert charity name} is covering part of the pickup cost today. The total estimated cost for the pickup is <strong>$80</strong> (total sponsored cost). To secure your pickup, you'll pay a <strong>$10</strong> booking fee today. When our pickup partner arrives, you'll pay an estimated <strong>$70</strong> [amount based on your current donatable items]. Please note: if you add or remove items before the pickup, the charity's contribution may adjust accordingly."</div>
     </div>
   </div>
 
@@ -634,7 +586,7 @@
       </ul>
       <div class="quote">"Just to recap: Your donation pickup is officially reserved for <strong>Insert Date &amp; Time</strong>! If you have just one more minute, I'd love to go over a few more helpful details to make sure you have the best possible experience. <span class="highlight">Can you stay on the phone for 1 more minute?"</span></div>
       <div class="quote"><em>Pause.</em></div>
-      <div class="quote">"You will receive an email shortly, that has helpful information, and a link to edit your donation pickup reservation if needed. That said, if you have a pen and a piece of paper, I'd like to give you the phone number for our white glove customer service. All of our customer service representatives are overseen by <strong>Military Veterans</strong>, and if you are not happy with anything you can always ask for a manager. The phone number is <strong>857-342-4937</strong>, again that's <strong>857-342-4937</strong> — please note this is a <strong>text only phone number</strong>."</div>
+      <div class="quote">"You will receive an email shortly, that has helpful information, and a link to edit your donation pickup reservation if needed. If you have any questions regarding your pickup, you can contact our support team. This information is provided through the management link."</div>
     </div>
   </div>
 
@@ -1098,111 +1050,110 @@
     updateSidebar();
     window.scrollTo({top: 0, behavior: 'smooth'});
   }
-  (function initUpdatesPanel() {
+  (function initQuickAccess() {
     const KEY = 'resupply_updates_read_v1';
     const panel = document.getElementById('updPanel');
     if (!panel) return;
-    const cards = Array.from(panel.querySelectorAll('.upd-card'));
-    const countEl = document.getElementById('updCount');
+    const items = Array.from(panel.querySelectorAll('#qaStore .upd-card'));
+    const listEl = document.getElementById('qaList');
+    const modal = document.getElementById('qaModal');
+    const modalBody = document.getElementById('qaModalBody');
+    let activeTab = 'updates';
 
-    // ---- storage seguro (si falla, el panel igual funciona) ----
-    function getRead() {
-      try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) { return []; }
-    }
-    function saveRead(list) {
-      try { localStorage.setItem(KEY, JSON.stringify(list)); } catch (e) {}
-    }
+    function getRead() { try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) { return []; } }
+    function saveRead(l) { try { localStorage.setItem(KEY, JSON.stringify(l)); } catch (e) {} }
+    const cats = c => (c.dataset.cats || '').split(/\s+/).filter(Boolean);
+    const emptyMsg = {
+      updates: 'No updates right now.',
+      faq: 'No FAQs yet. Add one in the content section (data-cats="faq").',
+      rebuttals: 'No rebuttals yet. Add one in the content section (data-cats="rebuttals").'
+    };
 
-    function refresh() {
+    function render() {
       const read = getRead();
-      let unread = 0;
-      cards.forEach(c => {
-        const isRead = read.includes(c.dataset.id);
-        c.classList.toggle('unread', !isRead);
-        if (!isRead) unread++;
-        const btn = c.querySelector('[data-read]');
-        if (btn) btn.textContent = isRead ? '✓ Read' : '✓ Got it';
+      // counters
+      ['updates', 'faq', 'rebuttals'].forEach(t => {
+        const el = document.getElementById('qaCount' + t.charAt(0).toUpperCase() + t.slice(1));
+        const list = items.filter(c => cats(c).includes(t));
+        if (t === 'updates') {
+          const unread = list.filter(c => !read.includes(c.dataset.id)).length;
+          el.textContent = unread > 0 ? unread + ' new' : list.length;
+          el.classList.toggle('has-new', unread > 0);
+        } else { el.textContent = list.length; }
       });
-      countEl.textContent = unread > 0 ? unread + ' new' : 'All read';
-      countEl.classList.toggle('zero', unread === 0);
+      // list rows (titles only)
+      listEl.innerHTML = '';
+      const shown = items.filter(c => cats(c).includes(activeTab));
+      if (!shown.length) {
+        const p = document.createElement('div'); p.className = 'qa-empty'; p.textContent = emptyMsg[activeTab]; listEl.appendChild(p);
+      }
+      shown.forEach(c => {
+        const unread = activeTab === 'updates' && !read.includes(c.dataset.id);
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'qa-row' + (unread ? ' unread' : ''); b.dataset.id = c.dataset.id;
+        const t = document.createElement('span'); t.className = 'qa-row-title'; t.textContent = c.querySelector('.upd-title').textContent.trim();
+        b.appendChild(t);
+        if (unread) { const n = document.createElement('span'); n.className = 'qa-new'; n.textContent = 'New'; b.appendChild(n); }
+        const a = document.createElement('span'); a.className = 'qa-arrow'; a.textContent = '➜'; b.appendChild(a);
+        b.addEventListener('click', () => openItem(c.dataset.id));
+        listEl.appendChild(b);
+      });
     }
 
-    // ---- marcar como leído ----
-    panel.querySelectorAll('[data-read]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const id = btn.closest('.upd-card').dataset.id;
-        const read = getRead();
-        if (!read.includes(id)) read.push(id);
-        saveRead(read);
-        refresh();
-      });
-    });
-    document.getElementById('updMarkAll').addEventListener('click', () => {
-      saveRead(cards.map(c => c.dataset.id));
-      refresh();
-    });
+    function openItem(id) {
+      const src = items.find(c => c.dataset.id === id); if (!src) return;
+      modalBody.innerHTML = '';
+      modalBody.appendChild(src.cloneNode(true));
+      modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false');
+      const read = getRead(); if (!read.includes(id)) { read.push(id); saveRead(read); }
+      render();
+    }
+    function closeModal() { modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true'); modalBody.innerHTML = ''; }
 
-    // ---- colapsar / expandir ----
+    // tabs
+    panel.querySelectorAll('.qa-tab').forEach(tab => tab.addEventListener('click', () => {
+      panel.querySelectorAll('.qa-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active'); activeTab = tab.dataset.tab; render();
+    }));
+    // collapse
     const toggleBtn = document.getElementById('updToggle');
     toggleBtn.addEventListener('click', () => {
-      const collapsed = panel.classList.toggle('collapsed');
-      toggleBtn.textContent = collapsed ? '▸ Expand' : '▾ Collapse';
+      const c = panel.classList.toggle('collapsed');
+      toggleBtn.textContent = c ? '▸ Expand' : '▾ Collapse';
     });
+    // modal close
+    document.getElementById('qaClose').addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
 
-    // ---- filtros ----
-    panel.querySelectorAll('.upd-chip').forEach(chip => {
-      chip.addEventListener('click', () => {
-        panel.querySelectorAll('.upd-chip').forEach(c => c.classList.remove('active'));
-        chip.classList.add('active');
-        const f = chip.dataset.filter;
-        cards.forEach(c => c.classList.toggle('hidden-card', f !== 'all' && c.dataset.type !== f));
-      });
-    });
-
-    // ---- copiar script al portapapeles ----
-    function flash(btn, msg) {
-      const old = btn.textContent;
-      btn.textContent = msg; btn.classList.add('copied');
-      setTimeout(() => { btn.textContent = old; btn.classList.remove('copied'); }, 1500);
-    }
+    // copy helpers
+    function flash(btn, msg) { const old = btn.textContent; btn.textContent = msg; btn.classList.add('copied'); setTimeout(() => { btn.textContent = old; btn.classList.remove('copied'); }, 1500); }
     function copyText(text, btn) {
       const done = () => flash(btn, '✓ Copied!');
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(done).catch(() => fallback());
-      } else { fallback(); }
       function fallback() {
-        const ta = document.createElement('textarea');
-        ta.value = text; document.body.appendChild(ta); ta.select();
+        const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select();
         try { document.execCommand('copy'); done(); } catch (e) { flash(btn, 'Copy failed'); }
         document.body.removeChild(ta);
       }
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done).catch(fallback); else fallback();
     }
-    panel.querySelectorAll('[data-copy]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const quote = btn.closest('.upd-card').querySelector('.upd-quote');
-        copyText(quote.innerText.trim(), btn);
-      });
-    });
-    panel.querySelectorAll('[data-copy-alt]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const note = btn.closest('.upd-card').querySelector('.upd-note');
-        copyText(note.innerText.replace(/^SALVO version:\s*/i, '').trim(), btn);
-      });
-    });
-
-    // ---- saltar al paso correspondiente del script ----
-    panel.querySelectorAll('[data-goto]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        // "payment": paso 9 del Regular (índice 8) / U8 del Uber (índice 18)
-        if (typeof selectScript === 'function' && typeof jumpTo === 'function') {
+    // modal actions (delegated)
+    modalBody.addEventListener('click', e => {
+      const btn = e.target.closest('button'); if (!btn) return;
+      const card = btn.closest('.upd-card');
+      if (btn.hasAttribute('data-copy')) copyText(card.querySelector('.upd-quote').innerText.trim(), btn);
+      else if (btn.hasAttribute('data-copy-alt')) copyText(card.querySelector('.upd-note').innerText.replace(/^SALVO version:\s*/i, '').trim(), btn);
+      else if (btn.hasAttribute('data-goto')) {
+        closeModal();
+        if (typeof jumpTo === 'function') {
           const isUber = (typeof currentScript !== 'undefined' && currentScript === 'uber');
           jumpTo(isUber ? 18 : 8);
         }
-      });
+      }
     });
 
-    refresh();
+    render();
   })();
-</script>
+  </script>
 </body>
 </html>
