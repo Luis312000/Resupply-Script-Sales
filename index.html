@@ -65,6 +65,18 @@
     .phone-pill small { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; background: #ff6b00; padding: 2px 7px; border-radius: 4px; }
     .phone-pill.copied { background: #27ae60; border-color: #27ae60; }
     @media (max-width: 900px) { .phone-pill small { display: none; } .toolbar { padding: 12px 16px; } }
+    .abc-btn { white-space: nowrap; padding: 8px 14px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.15); color: #fff; font-size: 14px; font-weight: 700; cursor: pointer; transition: background .2s; }
+    .abc-btn:hover { background: rgba(255,255,255,0.3); }
+    .pa-input { width: 100%; box-sizing: border-box; padding: 11px 14px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-color); color: var(--text-color); font-size: 15px; outline: none; margin: 6px 0 10px; }
+    .pa-input:focus { border-color: #1a3a6b; }
+    .pa-result { display: flex; flex-wrap: wrap; gap: 6px; min-height: 34px; margin-bottom: 14px; }
+    .pa-chip { background: var(--note-bg); color: var(--note-text); border-radius: 8px; padding: 5px 10px; font-size: 13px; font-weight: 700; }
+    .pa-chip b { color: #c45000; margin-right: 4px; }
+    .pa-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(135px, 1fr)); gap: 8px; }
+    .pa-cell { display: flex; align-items: baseline; gap: 8px; padding: 8px 12px; border: 1px solid var(--border); border-left: 4px solid #1a3a6b; border-radius: 8px; background: var(--bg-color); font-size: 14px; }
+    .pa-cell b { font-size: 18px; color: var(--step-title); min-width: 18px; }
+    .pa-title { margin: 0 0 2px; font-size: 16px; color: var(--step-title); }
+    .pa-sub { margin: 0; font-size: 12px; opacity: .7; }
     .moon-btn { background: none; border: none; font-size: 28px; cursor: pointer; padding: 0 10px; transition: transform 0.2s; }
     .step-item {
       margin-bottom: 12px;
@@ -332,6 +344,7 @@
     <span class="brand-name">ReSupply</span>
   </div>
   <input type="text" id="searchBar" placeholder="Search keywords...">
+  <button class="abc-btn" id="abcBtn" type="button" title="Phonetic alphabet">🔤 ABC</button>
   <button class="phone-pill" id="phonePill" type="button" title="Click to copy ReSupply number">📞 <span id="phoneNum">857-342-4937</span> <small>Text only</small></button>
   <button class="moon-btn" id="themeToggle">🌙</button>
 </div>
@@ -415,6 +428,17 @@
           <button class="upd-btn" data-copy type="button">📋 Copy script</button>
         </div>
       </div>
+  </div>
+</div>
+
+<div class="qa-modal" id="paModal" aria-hidden="true">
+  <div class="qa-dialog" role="dialog" aria-modal="true">
+    <button class="qa-close" id="paClose" type="button" aria-label="Close">✕</button>
+    <h3 class="pa-title">🔤 Phonetic Alphabet</h3>
+    <p class="pa-sub">Use it to confirm emails, names and addresses. Type to see it spelled out.</p>
+    <input class="pa-input" id="paInput" type="text" placeholder="Type an email or name, e.g. john.smith@gmail.com" autocomplete="off">
+    <div class="pa-result" id="paResult"></div>
+    <div class="pa-grid" id="paGrid"></div>
   </div>
 </div>
 
@@ -983,6 +1007,29 @@
     updateSidebar();
   }
 
+  (function () {
+    const W = {A:'Alpha',B:'Bravo',C:'Charlie',D:'Delta',E:'Echo',F:'Foxtrot',G:'Golf',H:'Hotel',I:'India',J:'Juliet',K:'Kilo',L:'Lima',M:'Mike',N:'November',O:'Oscar',P:'Papa',Q:'Quebec',R:'Romeo',S:'Sierra',T:'Tango',U:'Uniform',V:'Victor',W:'Whiskey',X:'X-ray',Y:'Yankee',Z:'Zulu'};
+    const SYM = {'@':'at','.':'dot','_':'underscore','-':'dash',' ':'space','#':'number','/':'slash',',':'comma'};
+    const modal = document.getElementById('paModal'), input = document.getElementById('paInput'), res = document.getElementById('paResult'), grid = document.getElementById('paGrid');
+    if (!modal) return;
+    grid.innerHTML = Object.keys(W).map(k => '<div class="pa-cell"><b>' + k + '</b>' + W[k] + '</div>').join('');
+    function spell() {
+      res.innerHTML = '';
+      Array.from(input.value).forEach(ch => {
+        const u = ch.toUpperCase(); const w = W[u] || SYM[ch] || null; if (w === null && !/\d/.test(ch)) return;
+        const d = document.createElement('span'); d.className = 'pa-chip';
+        d.innerHTML = '<b>' + (ch === ' ' ? '␣' : ch) + '</b>' + (W[u] ? W[u] : (SYM[ch] || ch));
+        res.appendChild(d);
+      });
+    }
+    input.addEventListener('input', spell);
+    const open = () => { modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false'); setTimeout(() => input.focus(), 50); };
+    const close = () => { modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true'); };
+    document.getElementById('abcBtn').addEventListener('click', open);
+    document.getElementById('paClose').addEventListener('click', close);
+    modal.addEventListener('click', e => { if (e.target === modal) close(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) close(); });
+  })();
   (function () {
     const pill = document.getElementById('phonePill');
     if (!pill) return;
